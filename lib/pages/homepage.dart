@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:musicmate/components/mydrawer.dart';
+import 'package:musicmate/models/playlist_provider.dart';
+import 'package:musicmate/models/song.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -12,12 +15,23 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(child: Text("Welcome to MusicMate")),
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          title: const Text("P L A Y L I S T")),
-      drawer: const Mydrawer(),
-    );
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            title: const Text("P L A Y L I S T")),
+        drawer: const Mydrawer(),
+        body: Consumer<PlaylistProvider>(builder: (context, value, child) {
+          final List<Song> playlist = value.playlist;
+
+          return ListView.builder(
+            itemCount: playlist.length,
+            itemBuilder: (context, index) {
+              final Song song = playlist(index);
+              return ListTile(
+                title: Text(song.song),
+              );
+            },
+          );
+        }));
   }
 }
