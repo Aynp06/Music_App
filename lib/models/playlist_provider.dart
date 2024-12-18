@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:musicmate/models/song.dart';
 
 class PlaylistProvider extends ChangeNotifier {
-  // ignore: unused_field
   final List<Song> _playlist = [
     Song(
         //song 1
@@ -14,17 +13,17 @@ class PlaylistProvider extends ChangeNotifier {
         songName: "Sarangi",
         artistName: "Sushant KC",
         albumArtImagePath: "assets/images/sarangi.jpg",
-        audioPath: "assets/music/sarangi.mp3")
+        audioPath: "assets/music/sarangi.mp3"),
   ];
+
+  int? _currentSongIndex;
+
+  List<Song> get playlist => _playlist;
+  int? get currentsongindex => _currentSongIndex;
+
+  set CurrentSongIndex(int? newIndex) {
+    _currentSongIndex = newIndex;
+  }
+
+  notifyListeners();
 }
-
-int? _currentsongindex;
-
-Type get playlist => _playlist;
-
-// ignore: camel_case_types
-class _playlist {
-}
-
-
-int? get Currentsongindex => _currentsongindex;
