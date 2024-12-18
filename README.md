@@ -1,6 +1,6 @@
 # MusicMate
 
-Play music with MusicMate and relief your ears
+"Play music with MusicMate and relieve your ears!"
 
 ## Your Biggest Mate ! 
 
