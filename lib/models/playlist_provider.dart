@@ -19,9 +19,9 @@ class PlaylistProvider extends ChangeNotifier {
   int? _currentSongIndex;
 
   List<Song> get playlist => _playlist;
-  int? get currentsongindex => _currentSongIndex;
+  int? get currentSongIndex => _currentSongIndex;
 
-  set CurrentSongIndex(int? newIndex) {
+  set currentSongIndex(int? newIndex) {
     _currentSongIndex = newIndex;
   }
 

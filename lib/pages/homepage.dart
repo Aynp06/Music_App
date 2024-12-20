@@ -50,10 +50,10 @@ class _HomepageState extends State<Homepage> {
                 final Song song = playlist[index];
                 return ListTile(
                   title: Text(song.songName,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text(
                     song.artistName,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                   leading: Image.asset(song.albumArtImagePath),
                   onTap: () => goToSong(index),
