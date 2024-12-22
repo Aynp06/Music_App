@@ -25,5 +25,6 @@ class PlaylistProvider extends ChangeNotifier {
     _currentSongIndex = newIndex;
   }
 
+  @override
   notifyListeners();
 }

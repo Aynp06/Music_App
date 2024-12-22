@@ -15,11 +15,10 @@ class Newbox extends StatelessWidget {
                 color: Colors.grey.shade600,
                 blurRadius: 15,
                 offset: const Offset(4, 4)),
-            BoxShadow(
-                color: Colors.white,
-                blurRadius: 15,
-                offset: const Offset(-4, -4)),
+            const BoxShadow(
+                color: Colors.white, blurRadius: 15, offset: Offset(-4, -4)),
           ]),
+      child: child,
     );
   }
 }
