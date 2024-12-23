@@ -19,7 +19,8 @@ class SongPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.arrow_back)),
                 const Text(
                   "Song Page",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
@@ -61,22 +62,50 @@ class SongPage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("0:00"),
+                      Text("1:45"),
                       Icon(Icons.shuffle),
                       Icon(Icons.repeat),
                       Text("3:50")
                     ],
                   ),
                 ),
-                Slider(
-                    inactiveColor: Colors.grey[400],
-                    min: 0,
-                    max: 100,
-                    value: 50,
-                    activeColor: const Color.fromARGB(255, 52, 151, 55),
-                    onChanged: (value) {})
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 4)),
+                  child: Slider(
+                      inactiveColor: Colors.grey[400],
+                      min: 0,
+                      max: 100,
+                      value: 50,
+                      activeColor: const Color.fromARGB(255, 52, 151, 55),
+                      onChanged: (value) {}),
+                )
               ],
             ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                    child: GestureDetector(
+                  onTap: () {},
+                  child: const Newbox(child: Icon(Icons.skip_previous)),
+                )),
+                const SizedBox(width: 25),
+                Expanded(
+                    flex: 2,
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: const Newbox(child: Icon(Icons.play_arrow)),
+                    )),
+                const SizedBox(width: 25),
+                Expanded(
+                    child: GestureDetector(
+                  onTap: () {},
+                  child: const Newbox(child: Icon(Icons.skip_next)),
+                )),
+              ],
+            )
           ]),
         )),
       ),
