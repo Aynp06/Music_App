@@ -8,8 +8,10 @@ class SongPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PlaylistProvider>(
-      builder: (context, value, child) => Scaffold(
+    return Consumer<PlaylistProvider>(builder: (context, value, child) {
+      final playlist = value.playlist;
+      final currentsong = playlist[value.currentSongIndex ?? 0];
+      return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: SafeArea(
             child: Padding(
@@ -35,14 +37,22 @@ class SongPage extends StatelessWidget {
                 ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      "assets/images/sarangi.jpg",
+                      currentsong.albumArtImagePath,
                     )),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("SUSHANT KC"),
+                      Column(
+                        children: [
+                          Text(
+                            currentsong.songName,
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Text(currentsong.artistName)
+                        ],
+                      ),
                       Icon(
                         Icons.favorite,
                         color: Colors.red,
@@ -108,7 +118,7 @@ class SongPage extends StatelessWidget {
             )
           ]),
         )),
-      ),
-    );
+      );
+    });
   }
 }
