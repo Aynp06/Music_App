@@ -18,6 +18,30 @@ class PlaylistProvider extends ChangeNotifier {
 
   int? _currentSongIndex;
 
+  final AudioPLayer _audioPLayer = AudioPlayer();
+
+  Duration _currentDuration = Duration.zero;
+  Duration _totalDuration = Duration.zero;
+
+  void listenToDuration() {
+    _audioPLayer.onDurationChanged.listen((newDuration) {
+      _totalDuration = newDuration;
+      notifyListeners();
+    });
+  }
+
+  _audioPlayer.onPositionChanged.listen((newPosition))
+  {
+    _currentDuration=newPosition;
+    notifyListeners();
+  }
+
+  PlaylistProvider() {
+    listenToDuration();
+  }
+
+  _audioPlayer.onPlayerComplete.listen((event){});
+
   List<Song> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
 
