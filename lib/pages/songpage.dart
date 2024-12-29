@@ -40,7 +40,7 @@ class SongPage extends StatelessWidget {
                       currentsong.albumArtImagePath,
                     )),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -53,7 +53,7 @@ class SongPage extends StatelessWidget {
                           Text(currentsong.artistName)
                         ],
                       ),
-                      Icon(
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       )
@@ -67,15 +67,15 @@ class SongPage extends StatelessWidget {
             ),
             Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 10, right: 18, left: 18),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 18, left: 18),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("1:45"),
-                      Icon(Icons.shuffle),
-                      Icon(Icons.repeat),
-                      Text("3:50")
+                      Text(value.currentDuration.toString()),
+                      const Icon(Icons.shuffle),
+                      const Icon(Icons.repeat),
+                      Text(value.totalDuration.toString())
                     ],
                   ),
                 ),
@@ -86,10 +86,13 @@ class SongPage extends StatelessWidget {
                   child: Slider(
                       inactiveColor: Colors.grey[400],
                       min: 0,
-                      max: 100,
-                      value: 50,
+                      max: value.totalDuration.inSeconds.toDouble(),
+                      value: value.currentDuration.inSeconds.toDouble(),
                       activeColor: const Color.fromARGB(255, 52, 151, 55),
-                      onChanged: (value) {}),
+                      onChanged: (double double) {},
+                      onChangeEnd: (double double) {
+                        value.seek(Duration(seconds: double.toInt()));
+                      }),
                 )
               ],
             ),
@@ -98,20 +101,23 @@ class SongPage extends StatelessWidget {
               children: [
                 Expanded(
                     child: GestureDetector(
-                  onTap: () {},
+                  onTap: value.playPreviousSong,
                   child: const Newbox(child: Icon(Icons.skip_previous)),
                 )),
                 const SizedBox(width: 25),
                 Expanded(
                     flex: 2,
                     child: GestureDetector(
-                      onTap: () {},
-                      child: const Newbox(child: Icon(Icons.play_arrow)),
+                      onTap: value.pauseOrResume,
+                      child: Newbox(
+                          child: Icon(value.isPlaying
+                              ? Icons.pause
+                              : Icons.play_arrow)),
                     )),
                 const SizedBox(width: 25),
                 Expanded(
                     child: GestureDetector(
-                  onTap: () {},
+                  onTap: value.playNextSong,
                   child: const Newbox(child: Icon(Icons.skip_next)),
                 )),
               ],
