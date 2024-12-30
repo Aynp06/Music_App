@@ -86,6 +86,7 @@ void playPreviousSong()async {
 
   _audioPlayer.onPlayerComplete.listen((event){
     playNextSong();
+    notifylisteners();
   });
   List<Song> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
